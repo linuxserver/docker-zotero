@@ -1,0 +1,28 @@
+---
+
+# jenkins variables
+project_name: docker-zotero
+external_type: na
+custom_version_command: "curl -sL https://www.zotero.org/download/ | awk -F'linux-x86_64' '/linux-x86_64/ {print $2}' | awk -F'\"' '{print $3}'"
+release_type: stable
+release_tag: latest
+ls_branch: master
+repo_vars:
+  - EXT_GIT_BRANCH = 'master'
+  - BUILD_VERSION_ARG = 'ZOTERO_VERSION'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-zotero'
+  - CONTAINER_NAME = 'zotero'
+  - DOCKERHUB_IMAGE = 'linuxserver/zotero'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/zotero'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/zotero'
+  - DIST_IMAGE = 'ubuntu'
+  - MULTIARCH = 'false'
+  - CI = 'true'
+  - CI_WEB = 'true'
+  - CI_PORT = '3000'
+  - CI_SSL = 'false'
+  - CI_DELAY = '120'
+  - CI_DOCKERENV = 'TZ=US/Pacific'
+  - CI_AUTH = 'user:password'
+  - CI_WEBPATH = ''
