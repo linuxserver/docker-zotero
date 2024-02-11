@@ -11,10 +11,15 @@ LABEL maintainer="thelamer"
 ENV TITLE=Zotero
 
 RUN \
+  echo "**** add icon ****" && \
+  curl -o \
+    /kclient/public/icon.png \
+    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/zotero-icon.png && \
   echo "**** install packages ****" && \
   apt-get update && \
   apt-get install --no-install-recommends -y \
     chromium \
+    chromium-l10n \
     lbzip2 \
     libdbus-glib-1-2 \
     tint2 && \
@@ -41,7 +46,6 @@ RUN \
   sed -i \
     's/NLMC/NLIMC/g' \
     /etc/xdg/openbox/rc.xml && \
-  sed -i 's|</applications>|  <application title="*Zotero" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml && \
   sed -i \
     -e "s@^Icon=.*@Icon=/opt/zotero/chrome/icons/default/default48.png@" \
     -e "s@^Exec=.*@Exec=/opt/zotero/zotero -url %U@" \
