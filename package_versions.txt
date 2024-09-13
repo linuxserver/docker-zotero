@@ -74,9 +74,9 @@ catatonit                                                                     0.
 chalk                                                                         4.1.2                                   npm                         
 chalk                                                                         5.3.0                                   npm                         
 chownr                                                                        2.0.0                                   npm                         
-chromium                                                                      128.0.6613.119-1~deb12u1                deb                         
-chromium-common                                                               128.0.6613.119-1~deb12u1                deb                         
-chromium-l10n                                                                 128.0.6613.119-1~deb12u1                deb                         
+chromium                                                                      128.0.6613.137-1~deb12u1                deb                         
+chromium-common                                                               128.0.6613.137-1~deb12u1                deb                         
+chromium-l10n                                                                 128.0.6613.137-1~deb12u1                deb                         
 ci-info                                                                       4.0.0                                   npm                         
 cidr-regex                                                                    4.0.5                                   npm                         
 clean-stack                                                                   2.2.0                                   npm                         
