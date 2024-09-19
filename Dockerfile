@@ -47,7 +47,7 @@ RUN \
     's/NLMC/NLIMC/g' \
     /etc/xdg/openbox/rc.xml && \
   sed -i \
-    -e "s@^Icon=.*@Icon=/opt/zotero/chrome/icons/default/default48.png@" \
+    -e "s@^Icon=.*@Icon=/opt/zotero/icons/icon64.png@" \
     -e "s@^Exec=.*@Exec=/opt/zotero/zotero -url %U@" \
     /opt/zotero/zotero.desktop && \
   cp \
