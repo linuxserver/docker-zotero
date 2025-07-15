@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm
+FROM ghcr.io/linuxserver/baseimage-selkies:debianbookworm
 
 # set version label
 ARG BUILD_DATE
@@ -8,12 +8,13 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 # title
-ENV TITLE=Zotero
+ENV TITLE=Zotero \
+    NO_GAMEPAD=true
 
 RUN \
   echo "**** add icon ****" && \
   curl -o \
-    /kclient/public/icon.png \
+    /usr/share/selkies/www/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/zotero-icon.png && \
   echo "**** install packages ****" && \
   apt-get update && \
@@ -28,7 +29,8 @@ RUN \
   if [ -z ${ZOTERO_VERSION+x} ]; then \
     ZOTERO_VERSION=$(curl -sL https://www.zotero.org/download/ \
       |awk -F'linux-x86_64' '/linux-x86_64/ {print $2}' \
-      | awk -F'"' '{print $3}'); \
+      | awk -F'"' '{print $3}' \
+      | tail -n1); \
   fi && \
   curl -o \
     /tmp/zotero.tar.bz2 -L \
