@@ -58,7 +58,6 @@ The architectures supported by this image are:
 
 The application can be accessed at:
 
-* http://yourhost:3000/
 * https://yourhost:3001/
 
 ### Strict reverse proxies
@@ -221,8 +220,6 @@ services:
   zotero:
     image: lscr.io/linuxserver/zotero:latest
     container_name: zotero
-    security_opt:
-      - seccomp:unconfined #optional
     environment:
       - PUID=1000
       - PGID=1000
@@ -241,7 +238,6 @@ services:
 ```bash
 docker run -d \
   --name=zotero \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
@@ -266,7 +262,6 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-v /config` | Users home directory in the container, stores local files and settings |
 | `--shm-size=` | This is needed for Chromium to function properly. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. Chromium runs in no-sandbox mode without it. |
 
 ## Environment variables from files (Docker secrets)
 
@@ -430,6 +425,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **22.09.25:** - Rebase to Debian Trixie.
 * **12.07.25:** - Rebase to Selkies, HTTPS IS NOW REQUIRED.
 * **03.04.25:** - Update chromium launch options to improve performance.
 * **10.02.24:** - Update Readme with new env vars and ingest proper PWA icon.
