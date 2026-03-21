@@ -148,7 +148,7 @@ pipeline {
       steps{
         script{
           env.EXT_RELEASE = sh(
-            script: ''' curl -sL https://www.zotero.org/download/ | awk -F'linux-x86_64' '/linux-x86_64/ {print $2}' | awk -F'"' '{print $3}' ''',
+            script: ''' curl -sL https://www.zotero.org/download/ | awk -F'linux-x86_64' '/linux-x86_64/ {print $2}' | awk -F'"' '{print $3}' | tail -n1 ''',
             returnStdout: true).trim()
             env.RELEASE_LINK = 'custom_command'
         }
