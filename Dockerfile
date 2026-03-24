@@ -25,7 +25,8 @@ RUN \
     chromium-l10n \
     lbzip2 \
     libdbus-glib-1-2 \
-    tint2 && \
+    tint2 \
+    xz-utils && \
   echo "**** install zotero ****" && \
   mkdir /opt/zotero && \
   if [ -z ${ZOTERO_VERSION+x} ]; then \
@@ -35,10 +36,10 @@ RUN \
       | tail -n1); \
   fi && \
   curl -o \
-    /tmp/zotero.tar.bz2 -L \
-    "https://download.zotero.org/client/release/${ZOTERO_VERSION}/Zotero-${ZOTERO_VERSION}_linux-x86_64.tar.bz2" && \
+    /tmp/zotero.tar.xz -L \
+    "https://download.zotero.org/client/release/${ZOTERO_VERSION}/Zotero-${ZOTERO_VERSION}_linux-x86_64.tar.xz" && \
   tar xf \
-    /tmp/zotero.tar.bz2 -C \
+    /tmp/zotero.tar.xz -C \
     /opt/zotero/ --strip-components=1 && \
   ln -s \
     /opt/zotero/zotero \
