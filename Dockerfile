@@ -11,7 +11,10 @@ LABEL maintainer="thelamer"
 
 # title
 ENV TITLE=Zotero \
-    NO_GAMEPAD=true
+    NO_GAMEPAD=true \
+    SELKIES_DESKTOP=true \
+    PIXELFLUX_WAYLAND=true \
+    NO_FULL=true
 
 RUN \
   echo "**** add icon ****" && \
@@ -61,6 +64,13 @@ RUN \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/* \
+    /usr/share/applications/debian-uxterm.desktop \
+    /usr/share/applications/debian-xterm.desktop \
+    /usr/share/applications/footclient.desktop \
+    /usr/share/applications/foot-server.desktop \
+    /usr/share/applications/st.desktop \
+    /usr/share/applications/tint2conf.desktop \
+    /usr/share/applications/tint2.desktop \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
