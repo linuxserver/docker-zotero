@@ -106,6 +106,7 @@ init_diagram: |
   "zotero:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "30.03.26:", desc: "Make Wayland default disable with PIXELFLUX_WAYLAND=false."}
   - {date: "21.03.26:", desc: "Use Wayland ozone platform for chromium fixes scaling and acceleration."}
   - {date: "28.12.25:", desc: "Add Wayland init logic."}
   - {date: "22.09.25:", desc: "Rebase to Debian Trixie."}

@@ -612,6 +612,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **30.03.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **21.03.26:** - Use Wayland ozone platform for chromium fixes scaling and acceleration.
 * **28.12.25:** - Add Wayland init logic.
 * **22.09.25:** - Rebase to Debian Trixie.
