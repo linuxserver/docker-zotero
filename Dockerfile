@@ -28,7 +28,6 @@ RUN \
     chromium-l10n \
     lbzip2 \
     libdbus-glib-1-2 \
-    tint2 \
     xz-utils && \
   echo "**** install zotero ****" && \
   mkdir /opt/zotero && \
@@ -69,8 +68,6 @@ RUN \
     /usr/share/applications/footclient.desktop \
     /usr/share/applications/foot-server.desktop \
     /usr/share/applications/st.desktop \
-    /usr/share/applications/tint2conf.desktop \
-    /usr/share/applications/tint2.desktop \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
