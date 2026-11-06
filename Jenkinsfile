@@ -28,7 +28,7 @@ pipeline {
     DEV_DOCKERHUB_IMAGE = 'lsiodev/zotero'
     PR_DOCKERHUB_IMAGE = 'lspipepr/zotero'
     DIST_IMAGE = 'ubuntu'
-    MULTIARCH = 'false'
+    MULTIARCH = 'true'
     CI = 'true'
     CI_WEB = 'true'
     CI_PORT = '3001'
