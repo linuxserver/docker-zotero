@@ -1,0 +1,80 @@
+# syntax=docker/dockerfile:1
+
+FROM ghcr.io/linuxserver/baseimage-selkies:arm64v8-debiantrixie
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+ARG ZOTERO_VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="thelamer"
+
+# title
+ENV TITLE=Zotero \
+    NO_GAMEPAD=true \
+    SELKIES_DESKTOP=true \
+    PIXELFLUX_WAYLAND=true \
+    NO_FULL=true
+
+RUN \
+  echo "**** add icon ****" && \
+  curl -o \
+    /usr/share/selkies/www/icon.png \
+    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/zotero-icon.png && \
+  echo "**** install packages ****" && \
+  apt-get update && \
+  apt-get install --no-install-recommends -y \
+    chromium \
+    chromium-l10n \
+    lbzip2 \
+    libdbus-glib-1-2 \
+    xz-utils && \
+  echo "**** install zotero ****" && \
+  mkdir /opt/zotero && \
+  if [ -z ${ZOTERO_VERSION+x} ]; then \
+    ZOTERO_VERSION=$(curl -sL https://www.zotero.org/download/ \
+      |awk -F'linux-x86_64' '/linux-x86_64/ {print $2}' \
+      | awk -F'"' '{print $3}' \
+      | tail -n1); \
+  fi && \
+  curl -o \
+    /tmp/zotero.tar.xz -L \
+    "https://download.zotero.org/client/release/${ZOTERO_VERSION}/Zotero-${ZOTERO_VERSION}_linux-arm64.tar.xz" && \
+  tar xf \
+    /tmp/zotero.tar.xz -C \
+    /opt/zotero/ --strip-components=1 && \
+  ln -s \
+    /opt/zotero/zotero \
+    /usr/bin/zotero && \
+  echo "**** OS Tweaks ****" && \
+  mv \
+    /usr/bin/chromium \
+    /usr/bin/chromium-real && \
+  sed -i \
+    's/NLMC/NLIMC/g' \
+    /etc/xdg/openbox/rc.xml && \
+  sed -i \
+    -e "s@^Icon=.*@Icon=/opt/zotero/icons/icon64.png@" \
+    -e "s@^Exec=.*@Exec=/opt/zotero/zotero -url %U@" \
+    /opt/zotero/zotero.desktop && \
+  cp \
+    /opt/zotero/zotero.desktop \
+    /usr/share/applications/ && \
+  echo "**** cleanup ****" && \
+  rm -rf \
+    /tmp/* \
+    /usr/share/applications/debian-uxterm.desktop \
+    /usr/share/applications/debian-xterm.desktop \
+    /usr/share/applications/footclient.desktop \
+    /usr/share/applications/foot-server.desktop \
+    /usr/share/applications/st.desktop \
+    /var/lib/apt/lists/* \
+    /var/tmp/*
+
+# add local files
+COPY /root /
+
+# ports and volumes
+EXPOSE 3001
+
+VOLUME /config
