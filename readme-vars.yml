@@ -10,7 +10,8 @@ project_categories: "Documents"
 project_blurb_optional_extras_enabled: false
 # supported architectures
 available_architectures:
-  - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - {arch: "{{ arch_x86_64 }}", tag: "latest"}
+  - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
 # development version
 development_versions: false
 # container parameters
@@ -107,6 +108,7 @@ init_diagram: |
   "zotero:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "06.11.26:", desc: "Add aarch64 support."}
   - {date: "30.03.26:", desc: "Make Wayland default disable with PIXELFLUX_WAYLAND=false."}
   - {date: "21.03.26:", desc: "Use Wayland ozone platform for chromium fixes scaling and acceleration."}
   - {date: "28.12.25:", desc: "Add Wayland init logic."}
